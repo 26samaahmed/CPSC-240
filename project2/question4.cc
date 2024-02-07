@@ -12,7 +12,6 @@ int main() {
     cout << "Enter a 3 digit number ";
     cin >> input;
     __asm {
-      // this part work, a = 8
       mov eax, input;     // eax = input
       cdq;                // edx : eax = input
       idiv ten;           // eax = input / 10
