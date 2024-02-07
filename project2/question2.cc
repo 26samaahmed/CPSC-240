@@ -2,6 +2,7 @@
 //
 
 #include <iostream>
+#include <iomanip>
 using namespace std;
 
 int main() {
@@ -42,18 +43,12 @@ int main() {
         mov r_perimeter, eax;   // r_perimeter = 2(lengths) + 2(widths) 
     }
 
-    cout << "       Triangle" << endl;
-    cout << "             Area .................... " << t_area << endl;
-    cout << "             Perimeter ............... " << t_perimeter << endl;
+    cout << setfill(' ') << setw(16) << " Triangle" << endl;
+    cout << setfill(' ') << setw(20) << " Area" << setfill('.') << setw(20) << t_area << endl;
+    cout << setfill(' ') << setw(25) << " Perimeter" << setfill('.') << setw(15) << t_perimeter << endl;
 
-    cout << "       Rectangle" << endl;
-    cout << "             Area .................... " << r_area << endl;
-    cout << "             Perimeter ............... " << r_perimeter << endl;
-
-}
-
-  cout << "       Rectangle\n";
-  cout << "             Area .................... " << r_area << endl;
-  cout << "             Perimeter ............... " << r_perimeter << endl;
+    cout << setfill(' ') << setw(17) << " Rectangle" << endl;
+    cout << setfill(' ') << setw(20) << " Area" << setfill('.') << setw(20) << r_area << endl;
+    cout << setfill(' ') << setw(25) << " Perimeter" << setfill('.') << setw(15) << r_perimeter << endl;
 
 }

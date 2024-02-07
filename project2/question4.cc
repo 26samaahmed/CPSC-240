@@ -1,8 +1,10 @@
 // question4.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
+
 #include <iostream>
 #include <iomanip>
 using namespace std;
+
 
 int main() {
     int input, total, a, b, c;
@@ -30,6 +32,6 @@ int main() {
       mov total, eax;     // total = a + b + c
     }
 
-    cout << "The total of the 3 digits in " << input << " is " << total << endl;
+    cout << "The total of digits in " << input << " is " << total << endl;
     return 0;
 }
