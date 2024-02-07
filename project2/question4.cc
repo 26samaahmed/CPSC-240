@@ -14,15 +14,15 @@ int main() {
     __asm {
       mov eax, input;     // eax = input
       cdq;                // edx : eax = input
-      idiv ten;           // eax = input / 10
-      mov a, edx;         // a = input % 10 this should make a = 8 if the input is 358.
+      idiv ten;           // eax = input / 10 -> 358/10
+      mov a, edx;         // a = input % 10 358 % 10 gives a = 8
 
       mov eax, input;     // eax = input
       cdq;                // edx : eax = input
-      idiv ten;           // ebx = input / 10  so 358/10 making ebx = 35.8
+      idiv ten;           // eax = input/10 ,  edx = remainder, eax = input / 10  so 358/10 making ebx = 35.8
       cdq;               
-      idiv ten;           // edx:ebx = input / 10  so 35/10
-      mov b, edx;         // b = 35 % 10 this should make b = 5 if the input is 358
+      idiv ten;           // edx:ebx = input / 10  so 35/10, eax = 3.5
+      mov b, edx;         // b = 35 % 10 so b = 5
       mov c, eax;         // eax hold the whole number from the number 3.5 so c = 3
         
       mov eax, a;         // eax = a
