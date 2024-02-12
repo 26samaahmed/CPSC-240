@@ -15,17 +15,17 @@ void askData() {
 
 int main() {
 	__asm {
-		mov eax, 0;
+		mov ebx, 0;
 	forLoop:
-		call askData;
+		call askData;                
 		cmp score, -1;		// compare score and -1
 		je exitLoop;		// if score = -1, exit loop
-		add eax, score;		// eax += score
+		add ebx, score;		// ebx += score
 		inc counter;		// ++counter
 		jmp forLoop;		// jump to for loop
 	exitLoop:
-		mov total_scores, eax;		// total = eax
-		
+		mov total_scores, ebx;		// total = ebx
+
 
 	}
 	cout << "Total is " << total_scores << endl;
