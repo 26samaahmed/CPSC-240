@@ -8,6 +8,9 @@ using namespace std;
 
 int main() {
     short a, b, c, d, e, f, X, Y, y_denominator, x_denominator;
+    cout << "The program solves the system\n";
+    cout << "   aX + bY = c\n";
+    cout << "   dX + eY = f\n";
     cout << "Enter the values of a, b, c: ";
     cin >> a >> b >> c;
     cout << "Enter the values of d, e, f: ";
@@ -49,6 +52,11 @@ int main() {
 
 
     }
+
+    cout << "X = " << X << endl;
+    cout << "Y = " << Y << endl;
+    return 0;
+}
 
     cout << "X = " << X << endl;
     cout << "Y = " << Y << endl;
