@@ -10,26 +10,29 @@ int total_scores = 0;
 int counter = 0;
 void askData() {
 	cout << "Enter your score (-1) to stop: ";
+}
+void readData() {
 	cin >> score;
 }
 
 int main() {
 	__asm {
-		mov ebx, 0;
 	forLoop:
-		call askData;                
-		cmp score, -1;		// compare score and -1
-		je exitLoop;		// if score = -1, exit loop
-		add ebx, score;		// ebx += score
-		inc counter;		// ++counter
-		jmp forLoop;		// jump to for loop
+		call askData;			// ask the user to input the numbers
+		call readData;			// read the users input
+		cmp score, -1;			// compare score and -1
+		je exitLoop;			// if score = -1, exit loop
+
+		mov eax, score;			// eax = score
+		add total_scores, eax;		// total += eax where eax = score
+		inc counter;			// ++counter
+		jmp forLoop;			// jump to for loop
 	exitLoop:
-		mov total_scores, ebx;		// total = ebx
-
-
+		mov eax, total_scores;		// eax = total scores
+		cdq;
+		idiv counter;			// eax = total_scores / counter
+		mov average, eax;		// average = total_scores / counter
 	}
-	cout << "Total is " << total_scores << endl;
-	cout << "Counter is " << counter << endl;
-	//cout << "Your average is: " << average << endl;
+	cout << "Your average is: " << average << endl;
 	return 0;
 }
