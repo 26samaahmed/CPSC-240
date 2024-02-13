@@ -61,7 +61,7 @@ int main()
     forLoop:
         call readInput;                           // Ask the user how many customers there are
         cmp number_of_customers, 0;              // compare 0 and the number of customers
-        je exitLoop;                          // if number_of_customers <= 0, jump to exit loop
+        je exitLoop;                          // if number_of_customers == 0, jump to exit loop
   
         call readInput;
         // do the calculations here
@@ -100,16 +100,19 @@ int main()
         imul ax, twelve_inch_price;   // ax = = num_of_sandwiches * twelve_inches_price
         mov sandwich_total, ax;         // sandwich_total = num_of_sandwiches * twelve_inches_price
 
-        add ax, drink_total;            // ax = drink_total
-        add ax, sandwich_total;         // ax = drink_total + sandwich_total
-        mov total, ax;                  // total = drink_total + sandwich_total
 
 
         dec number_of_customers;                    // counter--
-        jnz forLoop;
+        jmp forLoop;
 
     exitLoop:
+        mov ax, drink_total;            // ax = drink_total
+        add ax, sandwich_total;         // ax = drink_total + sandwich_total
+        mov total, ax;                  // total = drink_total + sandwich_total
         call display_total;
 
     }
+
+    return 0;
+
 }
