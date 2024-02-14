@@ -15,9 +15,14 @@ void askData() {
 void readChar() {
     letter = cin.get();
 }
+void display() {
+
+    cout << "No. of uppercase letters = " << upperCaseCount << endl;
+    cout << "No. of lowercase letters = " << lowerCaseCount << endl;
+}
 
 int main() {
-    __asm{
+    __asm {
         mov letter, 0;      // letter = 0
         call askData;       // ask user to enter the sentence
     forLoop:
@@ -25,24 +30,21 @@ int main() {
         cmp letter, '\n';   // if we reach a new line, it means we went through all the letters
         je exitLoop;
         cmp letter, 'a';    // compare the current letter to the decimal number for the character a (using the ASCII table)
-        jge lowerCase;      
-        cmp letter, 'A';
-        jge upperCase;
-        jmp whileLoop;
-
-        
+        jge lowerCase;
+        cmp letter, 'Z';
+        jle upperCase;
     lowerCase:
         inc lowerCaseCount;
 
     upperCase:
         inc upperCaseCount;
 
+        jmp forLoop;
+
+
     exitLoop:
-        
+        call display;
 
     }
-
-    cout << "No. of uppercase letters = " << upperCaseCount << endl;
-    cout << "No. of lowercase letters = " << lowerCaseCount << endl;
     return 0;
-}
+} // lower case count works but upper doesn't
