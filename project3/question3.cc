@@ -32,16 +32,16 @@ int main() {
         call readChar;
         cmp letter, '\n';   // if we reach a new line, it means we went through all the letters
         je exitLoop;
-        cmp letter, 90;
+        cmp letter, 'Z';
         jle upperCase;
-        cmp letter, 97;
+        cmp letter, 'a';
         jge lowerCase;
 
     lowerCase:
-        cmp letter, 122;
+        cmp letter, 'z';
         jle Increment_L;
     upperCase:
-        cmp letter, 65;
+        cmp letter, 'A';
         jge Increment_U;
 
     Increment_U:
