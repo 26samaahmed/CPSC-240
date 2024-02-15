@@ -7,8 +7,6 @@ using namespace std;
 
 short number_of_customers, num_of_drinks, num_of_sandwiches, sandwich_size, total, counter, drink_total, sandwich_total;
 char  drink_type;
-short ten = 10;
-short twelve = 12;
 short soda_price = 2;
 short water_price = 1;
 short ten_inches_price = 3;
@@ -26,8 +24,6 @@ void menu() {
     cout << "Sandwiches\n";
     cout << "   10 inches" << setfill('.') << setw(18) << "$3\n";
     cout << "   12 inches" << setfill('.') << setw(18) << "$5\n";
-}
-void askData() {
     cout << "Enter the number of customers: ";
     cin >> number_of_customers;
 }
@@ -54,62 +50,53 @@ int main()
 
     __asm {
         call menu;
-        call askData;
-        mov ax, number_of_customers;
-     
+        mov al, drink_type;             // ah = drink_type
 
-    forLoop:
-        call readInput;                           // Ask the user how many customers there are
-        cmp number_of_customers, 0;              // compare 0 and the number of customers
-        je exitLoop;                          // if number_of_customers == 0, jump to exit loop
-  
+    Loop1:                        
         call readInput;
-        // do the calculations here
-        mov ax, num_of_drinks;          // ax = num_of_drinks
-        mov ah, drink_type;             // ah = drink_type
-        cmp ah, 'w';                    // comparing the drink type to check if it's equal to w
+        cmp drink_type, 'W';                    // comparing the drink type to check if it's equal to w
         je Water;                       // If ah ='w', jump to Water
 
-        cmp ah, 's';                    // comparing the drink type to check if it's equal to s
-        je Soda;                        // If ah ='s', jump to Soda
+
+    TestWater:
+        cmp al, 'w';
+        jne Soda;
 
     Water:
-        imul ax, water_price;           // ax = num_of_drinks * water_price
+        mov ax, num_of_drinks;
+        imul water_price;           // ax = num_of_drinks * water_price
         mov drink_total, ax;            // drink_total = num_of_drinks * water_price
+        jmp Sandwich;
 
     Soda:
-        imul ax, soda_price;            // ax = num_of_drinks * soda_price
+        mov ax, num_of_drinks;
+        imul soda_price;            // ax = num_of_drinks * soda_price
         mov drink_total, ax;
 
 
-        mov ax, num_of_sandwiches;      // ax = num_of_sandwiches
-        mov bx, sandwich_size;          // bx = sandwich_size
-        cmp bx, ten;
-        je TenInches;                   // if sandwich_size = 10
-        cmp bx, twelve;
-        je TwelveInches;                // if sandwich_size = 12
+    Sandwich:
+        cmp sandwich_size, 10;
+        jne Twelve;
 
+    Ten:
+        mov ax, num_of_sandwiches;
+        imul ten_inches_price;
+        mov sandwich_total, ax;
+        jmp Total;
 
-    TenInches:
-        imul ax, ten_inches_price;      // ax = num_of_sandwiches * ten_inches_price
-        mov sandwich_total, ax;         // sandwich_total = num_of_sandwiches * ten_inches_price
+    Twelve:
+        mov ax, num_of_sandwiches;
+        imul twelve_inch_price;
+        mov sandwich_total, ax;
 
-
-
-    TwelveInches:
-        imul ax, twelve_inch_price;   // ax = = num_of_sandwiches * twelve_inches_price
-        mov sandwich_total, ax;         // sandwich_total = num_of_sandwiches * twelve_inches_price
-
-
-
-        dec number_of_customers;                    // counter--
-        jmp forLoop;
-
-    exitLoop:
+    Total:
         mov ax, drink_total;            // ax = drink_total
         add ax, sandwich_total;         // ax = drink_total + sandwich_total
         mov total, ax;                  // total = drink_total + sandwich_total
         call display_total;
+        cmp number_of_customers, 0;
+        dec number_of_customers;                    // counter--
+        jnz Loop1;    // jump of not 0
 
     }
 
