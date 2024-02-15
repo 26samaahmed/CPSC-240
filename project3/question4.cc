@@ -2,12 +2,11 @@
 //
 
 #include <iostream>
-#include <iomanip>
 using namespace std;
 
+short a, b, c, d, e, f, X, Y, y_denominator, x_denominator;
 
-int main() {
-    short a, b, c, d, e, f, X, Y, y_denominator, x_denominator;
+void getData() {
     cout << "The program solves the system\n";
     cout << "   aX + bY = c\n";
     cout << "   dX + eY = f\n";
@@ -15,7 +14,11 @@ int main() {
     cin >> a >> b >> c;
     cout << "Enter the values of d, e, f: ";
     cin >> d >> e >> f;
+}
+
+int main() {
     __asm {
+        call getData;
         // Calculate Y's denominator first
         mov ax, e;              // ax = e
         imul a;                 // ax = e * a
@@ -52,12 +55,7 @@ int main() {
 
 
     }
-
-    cout << "X = " << X << endl;
-    cout << "Y = " << Y << endl;
-    return 0;
-}
-
+    
     cout << "X = " << X << endl;
     cout << "Y = " << Y << endl;
     return 0;
