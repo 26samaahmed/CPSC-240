@@ -72,4 +72,5 @@ int main()
         mov ramSize, ax;              // ramSize = 64
         call displayRamSize;
     }
+return 0;
 }
