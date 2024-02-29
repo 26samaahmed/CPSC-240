@@ -1,5 +1,7 @@
 // project 4.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
+
+
 #include <iostream>
 using namespace std;
 
@@ -10,12 +12,28 @@ using namespace std;
 short sum, firstChar, secondChar, thirdChar, fourthChar;
 short two = 2;
 
-void displayValid() {
-    cout << "This is a valid ID for the family\n";
+void displayBeefValid() {
+    cout << "BEEF is a valid ID for the family\n";
 }
 
-void displayInvalid() {
-    cout << "This is not a valid ID for the family\n";
+void displayBeefInvalid() {
+    cout << "BEEF is not a valid ID for the family\n";
+}
+
+void displayFadeValid() {
+    cout << "FADE is a valid ID for the family\n";
+}
+
+void displayFadeInvalid() {
+    cout << "FADE is not a valid ID for the family\n";
+}
+
+void displayCabeValid() {
+    cout << "CABE is a valid ID for the family\n";
+}
+
+void displayCabeInvalid() {
+    cout << "CABE is not a valid ID for the family\n";
 }
 
 
@@ -60,10 +78,10 @@ int main()
 
 
     Invalid:
-        call displayInvalid
+        call displayBeefInvalid;
 
     Valid:
-        call displayValid;
+        call displayBeefValid;
 
 
         // FADE
@@ -102,10 +120,10 @@ int main()
 
 
     Invalid2:
-        call displayInvalid
+        call displayFadeInvalid;
 
     Valid2:
-        call displayValid;
+        call displayFadeValid;
 
         // CABE
         mov sum, 0;                 // sum = 0;
@@ -143,10 +161,10 @@ int main()
         Jne Invalid3;               // If they are not equal, jump to Invalid
 
     Valid3:
-        call displayValid;
+        call displayCabeValid;
 
     Invalid3:
-        call displayInvalid;
+        call displayCabeInvalid;
 
     }
 
