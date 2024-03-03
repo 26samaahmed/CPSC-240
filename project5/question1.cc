@@ -5,13 +5,11 @@
 using namespace std;
 
 int total, medium_total, blue_total, i;
-int all_shirts[4][4] = { 10, 20, 30, 40, 
-                         20, 10, 40, 30, 
-                         5, 15, 20, 25, 
-                         30, 25, 20, 15 };
 
-int medium_shirts[4] = { 20, 10, 15, 25 };
-int blue_shirts[4] = { 5, 15, 20, 25 };
+int all_shirts[4][4] = { 10, 20, 30, 40,
+                         20, 10, 40, 30,
+                         5, 15, 20, 25,
+                         30, 25, 20, 15 };
 
 void displayTshirtsTotal() {
     cout << "Total Number of all shirts: " << total << endl;
@@ -28,7 +26,7 @@ int main()
 {
     // lea [load effective address] referse to getting the address
     // esi holds the source index
-    __asm{
+    __asm {
         // Calculate total of tshirts
         mov eax, 0;                 // eax = 0
         mov i, 0;                   // i = 0
@@ -42,36 +40,37 @@ int main()
         Jmp forLoop;
     done:
         mov total, eax;             // total = eax
-        call displayTshirtsTotal;   
+        call displayTshirtsTotal;
 
-        // Calculate total of Medium tshirts
+        // Calculate total of Medium tshirts [result is 70]
         mov eax, 0;                 // eax = 0
-        mov i, 0;                   // i = 0
-        lea esi, [medium_shirts];   // esi = [medium_shirts]
+        mov ebx, 1;                 // i = 1
+        lea esi, [all_shirts + 4];  // esi = [all_shirts + 4]
+        mov ecx, 4;
     forLoop2:
-        cmp i, 4;                   // compare i and 4
-        Je done2;                   // if i == 4, jumpt to done2
-        add eax, [esi];             // eax += medium_shirts[]
-        inc i;                      // ++i
-        add esi, 4;                 // go to the next index so esi += 4
+        cmp ebx, 14;                // compare i and 14
+        Je done2;                   // if i == 14, jumpt to done2
+        add eax, [esi];             // eax += all_shirts[]
+        add ebx, ecx;               // ++i the problem is here because i want it to jump by 4 indices instead of 1
+        add esi, 8;                 // go to the next index so esi += 8
         Jmp forLoop2;
     done2:
         mov medium_total, eax;      // medium_total = eax
         call displayMediumShirts;
 
-        // Calculate total of blue tshirts
+        // Calculate total of blue tshirts [result is 65]
         mov eax, 0;                 // eax = 0
-        mov i, 0;                   // i = 0
-        lea esi, [blue_shirts];   // esi = [blue_shirts]
+        mov i, 8;                   // i = 8 so that it starts from row 3
+        lea esi, [all_shirts + 32]; // esi = [all_shirts + 32]  which is the adress of the value row 3 column 
     forLoop3:
-        cmp i, 4;                   // compare i and 4
-        Je done3;                   // if i == 4, jumpt to done2
-        add eax, [esi];             // eax += medium_shirts[]
+        cmp i, 12;                  // compare i and 12, where 12 is the index of the last number in row 3
+        Je done3;                   // if i == 12, jumpt to done2
+        add eax, [esi];             // eax += all_shirts[]
         inc i;                      // ++i
         add esi, 4;                 // go to the next index so esi += 4
         Jmp forLoop3;
     done3:
-        mov blue_total, eax;      // medium_total = eax
+        mov blue_total, eax;        // blue_total = eax
         call displayBlueShirts;
     }
 
