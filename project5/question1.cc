@@ -42,21 +42,22 @@ int main()
         mov total, eax;             // total = eax
         call displayTshirtsTotal;
 
+
         // Calculate total of Medium tshirts [result is 70]
         mov eax, 0;                 // eax = 0
-        mov ebx, 1;                 // i = 1
+        mov i, 1;                   // i = 1
         lea esi, [all_shirts + 4];  // esi = [all_shirts + 4]
-        mov ecx, 4;
     forLoop2:
-        cmp ebx, 14;                // compare i and 14
-        Je done2;                   // if i == 14, jumpt to done2
+        cmp i, 14;                  // compare i and 14
+        Je done2;                   // if i == 14, jump to done2
         add eax, [esi];             // eax += all_shirts[]
-        add ebx, ecx;               // ++i the problem is here because i want it to jump by 4 indices instead of 1
-        add esi, 8;                 // go to the next index so esi += 8
+        inc i;                      // ++i
+        add esi, 16;                // go to the next index so esi += 16
         Jmp forLoop2;
-    done2:
+   done2:
         mov medium_total, eax;      // medium_total = eax
         call displayMediumShirts;
+
 
         // Calculate total of blue tshirts [result is 65]
         mov eax, 0;                 // eax = 0
