@@ -5,7 +5,7 @@
 using namespace std;
 
 int arr[3][3][2] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 };
-int i, total, medium_total , red_first, red_total = 0;
+int i, total, medium_total, red_first, red_total, short_total = 0;
 // the first [3] is for colors
 // the second [3] is for sizes
 // the [2] is for the type of sleeve
@@ -20,6 +20,10 @@ void displayMediumTotal() {
 
 void displayRedTotal() {
     cout << "Total number of red shirts = " << red_total << endl;
+}
+
+void displayShortSleevesTotal() {
+    cout << "Total number of short sleeve shirts = " << short_total << endl;
 }
 
 int main()
@@ -37,11 +41,10 @@ int main()
         add eax, [esi];         // eax += arr[][][]
         inc i;                  // ++i
         add esi, 4;             // esi += 4
-        Jmp forLoop;        
+        Jmp forLoop;
     done:
         mov total, eax;         // total = eax
         call displayShirtTotal;
-
 
         // Calculate total for medium shirts -> 57
         // arr[0][1][0] = 2, arr[1][1][0] = 5, arr[2][1][0] = 8, arr[0][1][1] = 11, arr[1][1][1] = 14, arr[2][1][1] = 17
@@ -59,7 +62,6 @@ int main()
         mov medium_total, eax;  // medium_total = eax
         call displayMediumTotal;
 
-
         // Calculate total for short sleeve shirts -> 45
         // arr[0][0][0] = 1, arr[0][1][0] = 2 , arr[0][2][0] = 3, arr[1][0][0] = 4, arr[1][1][0] = 5 , arr[1][2][0] = 6, arr[2][0][0] = 7, arr[2][1][0] = 8 , arr[2][2][0] = 9
         mov eax, 0;             // eax = 0
@@ -73,8 +75,8 @@ int main()
         add esi, 4;             // esi += 4
         Jmp forLoop3;
     done3:
-        mov medium_total, eax;  // medium_total = eax;
-        call displayMediumTotal;
+        mov short_total, eax;  // short_total = eax;
+        call displayShortSleevesTotal;
 
 
         // Calculate total for red shirts -> 39
