@@ -5,7 +5,7 @@
 using namespace std;
 
 int arr[3][3][2] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 };
-int i, total, medium_total, red_first, red_total, short_total = 0;
+int i, total, medium_total, red_total, short_total = 0;
 // the first [3] is for colors
 // the second [3] is for sizes
 // the [2] is for the type of sleeve
@@ -62,49 +62,36 @@ int main()
         mov medium_total, eax;  // medium_total = eax
         call displayMediumTotal;
 
-        // Calculate total for short sleeve shirts -> 45
-        // arr[0][0][0] = 1, arr[0][1][0] = 2 , arr[0][2][0] = 3, arr[1][0][0] = 4, arr[1][1][0] = 5 , arr[1][2][0] = 6, arr[2][0][0] = 7, arr[2][1][0] = 8 , arr[2][2][0] = 9
+        // Calculate total for short sleeve shirts -> 81
+        //  1, 3, 5, 7, 9, 11, 13, 15, 17
         mov eax, 0;             // eax = 0
         mov i, 0;               // i = 0
         lea esi, [arr];         // esi = [arr]
     forLoop3:
-        cmp i, 9;               // compare i and 9
-        Je done3;               // If i == 9, jump to done3
+        cmp i, 17;              // compare i and 17
+        Je done3;               // If i == 17, jump to done3
         add eax, [esi];         // eax += arr[][][]
         inc i;                  // ++i
-        add esi, 4;             // esi += 4
+        add esi, 8;             // esi += 8
         Jmp forLoop3;
     done3:
         mov short_total, eax;  // short_total = eax;
         call displayShortSleevesTotal;
 
 
-        // Calculate total for red shirts -> 39
-        // arr[0][0][0] = 1, arr[0][1][0] = 2 , arr[0][2][0] = 3, arr[0][0][1] = 10 , arr[0][1][1] = 11 , arr[0][2][1] = 12
+        // Calculate total for red shirts -> 21
+        // 1, 2, 3, 4, 5, 6
         mov eax, 0;             // eax = 0
         mov i, 0;               // i = 0
         lea esi, [arr];         // esi = [arr]
     forLoop4:
-        cmp i, 3;               // compare i and 3
-        Je done4;               // If i == 3, jump to done4
+        cmp i, 6;               // compare i and 6
+        Je done4;               // If i == 6, jump to done4
         add eax, [esi];         // eax += arr[][][]
         inc i;                  // ++i
         add esi, 4;             // esi += 4
         Jmp forLoop4;
     done4:
-        mov red_first, eax;     // red_first = eax
-        mov eax, 0;             // eax = 0
-        mov i, 9;               // i = 9
-        lea esi, [arr + 36];    // esi = [arr + 36]
-    forLoop5:
-        cmp i, 12;              // compare i and 12
-        Je done5;               // If i == 12, jump to done5
-        add eax, [esi];         // eax += arr[][][]
-        inc i;                  // ++i
-        add esi, 4;             // esi += 4
-        Jmp forLoop5;
-    done5:
-        add eax, red_first;     // eax += red_first
         mov red_total, eax;     // red_total = eax;
         call displayRedTotal;
     }
