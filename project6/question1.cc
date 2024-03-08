@@ -6,8 +6,8 @@ using namespace std;
 
 int main()
 {
-    int a, b, c, h, lengths, widths, t_area, t_perimeter, r_area, r_perimeter;
-    int two = 2;
+    float a, b, c, h, lengths, widths, t_area, t_perimeter, r_area, r_perimeter = 0;
+    float two = 2;
     cout << "Enter the values for a, b, c, and h for the triangle: ";
     cin >> a >> b >> c >> h;
     cout << "Enter the length and the width of the rectangle: ";
@@ -44,16 +44,14 @@ int main()
         fmul;               // st[0] = 2 * (lengths + widths)
         fstp r_perimeter;   // r_perimeter = 2 * (lengths + widths)
     }
+    
     cout << setfill(' ') << setw(16) << " Triangle" << endl;
     cout << fixed << showpoint << setprecision(2);
     cout << setfill(' ') << setw(20) << " Area" << setfill('.') << setw(20) << t_area << endl;
-    cout << fixed << showpoint << setprecision(2);
     cout << setfill(' ') << setw(25) << " Perimeter" << setfill('.') << setw(15) << t_perimeter << endl;
 
     cout << setfill(' ') << setw(17) << " Rectangle" << endl;
-    cout << fixed << showpoint << setprecision(2);
     cout << setfill(' ') << setw(20) << " Area" << setfill('.') << setw(20) << r_area << endl;
-    cout << fixed << showpoint << setprecision(2);
     cout << setfill(' ') << setw(25) << " Perimeter" << setfill('.') << setw(15) << r_perimeter << endl;
     
     return 0;
